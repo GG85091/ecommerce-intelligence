@@ -1,14 +1,17 @@
 import pandas as pd
 import numpy as np
+from pathlib import Path
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.preprocessing import LabelEncoder
 
+_DATA_DIR = Path(__file__).parent.parent / "data"
+
 
 def load_reviews():
-    return pd.read_csv("data/reviews.csv")
+    return pd.read_csv(_DATA_DIR / "reviews.csv")
 
 
 def train_model(df):

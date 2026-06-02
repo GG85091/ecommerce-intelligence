@@ -1,11 +1,14 @@
 import pandas as pd
 import numpy as np
+from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+_DATA_DIR = Path(__file__).parent.parent / "data"
+
 
 def load_products():
-    return pd.read_csv("data/products.csv")
+    return pd.read_csv(_DATA_DIR / "products.csv")
 
 
 def build_similarity_matrix(df):

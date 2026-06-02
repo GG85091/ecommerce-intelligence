@@ -1,7 +1,18 @@
 import os
-if not os.path.exists("data/products.csv") or not os.path.exists("data/reviews.csv"):
+import sys
+from pathlib import Path
+
+# Always work relative to this file's directory (critical for Streamlit Cloud)
+BASE_DIR = Path(__file__).parent.resolve()
+os.chdir(BASE_DIR)
+
+if not (BASE_DIR / "data" / "products.csv").exists() or not (BASE_DIR / "data" / "reviews.csv").exists():
     import subprocess
-    subprocess.run(["python", "data/generate_data.py"])
+    subprocess.run(
+        [sys.executable, str(BASE_DIR / "data" / "generate_data.py")],
+        cwd=str(BASE_DIR),
+        check=True,
+    )
 
 import streamlit as st
 import pandas as pd
