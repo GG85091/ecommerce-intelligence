@@ -1,3 +1,8 @@
+import os
+if not os.path.exists("data/products.csv") or not os.path.exists("data/reviews.csv"):
+    import subprocess
+    subprocess.run(["python", "data/generate_data.py"])
+
 import streamlit as st
 import pandas as pd
 import matplotlib
